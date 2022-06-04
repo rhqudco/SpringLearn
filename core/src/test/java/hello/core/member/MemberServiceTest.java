@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 public class MemberServiceTest {
 
-    MemberSerivce memberSerivce;
+    MemberService memberSerivce;
     @BeforeEach
     public void beforeEach() {
         AppConfig appConfig = new AppConfig();

@@ -1,6 +1,6 @@
 package hello.core.member;
 
-public class MemberServiceImpl implements MemberSerivce{
+public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;
 
