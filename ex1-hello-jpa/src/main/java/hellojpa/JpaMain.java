@@ -14,18 +14,9 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction(); // 트랜잭션
         tx.begin();
         try {
-            Member member = new Member();
-            member.setId(100L);
-            member.setName("HelloJPA");
-
-            System.out.println("=== BEFORE ===");
-            em.persist(member);
-            System.out.println("=== AFTER ===");
-
-            Member findMember = em.find(Member.class, 100L);
-            System.out.println("findMember.getId() = " + findMember.getId());
-            System.out.println("findMember.getName() = " + findMember.getName());
-
+            Member member = em.find(Member.class, 100L);
+            member.setName("ZZZZZ");
+            em.detach(member);
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
