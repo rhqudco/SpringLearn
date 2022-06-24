@@ -14,9 +14,7 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction(); // 트랜잭션
         tx.begin();
         try {
-            Member member = em.find(Member.class, 100L);
-            member.setName("ZZZZZ");
-            em.detach(member);
+
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
