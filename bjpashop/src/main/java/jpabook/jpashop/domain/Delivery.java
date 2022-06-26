@@ -21,5 +21,4 @@ public class Delivery {
 
     @OneToOne(mappedBy = "delivery")
     private Order order;
-
 }
