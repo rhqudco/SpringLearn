@@ -14,26 +14,12 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction(); // 트랜잭션
         tx.begin();
         try {
-            Team team = new Team();
-            team.setName("TeamA");
-            em.persist(team);
+            Album album = new Album();
+            album.setArtist("artist");
+            album.setName("artist - artist");
+            album.setPrice(10000);
 
-            Member member = new Member();
-            member.setName("Member1");
-            member.setTeam(team);
-            em.persist(member);
-
-            team.getMembers().add(member);
-
-            em.flush();
-            em.clear();
-
-            Team findTeam = em.find(Team.class, team.getId());
-            List<Member> members = findTeam.getMembers();
-
-            for (Member m : members) {
-                System.out.println("m = " + m.getName());
-            }
+            Album findAlbum = em.find(Album.class, album.getId());
 
             tx.commit();
         } catch (Exception e) {
