@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class JpaMain {
@@ -14,12 +15,12 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction(); // 트랜잭션
         tx.begin();
         try {
-            Album album = new Album();
-            album.setArtist("artist");
-            album.setName("artist - artist");
-            album.setPrice(10000);
+            Member member = new Member();
+            member.setName("kim");
+            member.setCreatedBy("kim");
+            member.setCreatedDate(LocalDateTime.now());
 
-            Album findAlbum = em.find(Album.class, album.getId());
+            em.persist(member);
 
             tx.commit();
         } catch (Exception e) {
