@@ -15,12 +15,15 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction(); // 트랜잭션
         tx.begin();
         try {
-            Member member = new Member();
-            member.setName("kim");
-            member.setCreatedBy("kim");
-            member.setCreatedDate(LocalDateTime.now());
+            Child child1 = new Child();
+            Child child2 = new Child();
 
-            em.persist(member);
+            Parent parent = new Parent();
+
+            parent.addChild(child1);
+            parent.addChild(child2);
+
+            em.persist(parent);
 
             tx.commit();
         } catch (Exception e) {

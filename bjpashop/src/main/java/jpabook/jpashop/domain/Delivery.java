@@ -6,11 +6,9 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Getter
-@Setter
+@Getter @Setter
 public class Delivery extends BaseEntity{
-    @Id
-    @GeneratedValue
+    @Id @GeneratedValue
     @Column(name = "DELIVERY_ID")
     private Long id;
 
@@ -19,6 +17,6 @@ public class Delivery extends BaseEntity{
     private String zipcode;
     private DeliveryStatus status;
 
-    @OneToOne(mappedBy = "delivery")
+    @OneToOne(mappedBy = "delivery", fetch = FetchType.LAZY)
     private Order order;
 }
