@@ -8,12 +8,12 @@ public class MemberProduct {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne
-    @JoinColumn("MEMBER_ID")
-    private Member member;
-
-    @ManyToOne
-    @JoinColumn("PRODUCT_ID")
-    private Product product;
+//    @ManyToOne
+//    @JoinColumn("MEMBER_ID")
+//    private Member member;
+//
+//    @ManyToOne
+//    @JoinColumn("PRODUCT_ID")
+//    private Product product;
 
 }
