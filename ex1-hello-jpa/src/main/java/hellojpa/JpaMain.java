@@ -15,15 +15,10 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction(); // 트랜잭션
         tx.begin();
         try {
-            Child child1 = new Child();
-            Child child2 = new Child();
-
-            Parent parent = new Parent();
-
-            parent.addChild(child1);
-            parent.addChild(child2);
-
-            em.persist(parent);
+            List<Member> memberList = em.createQuery(
+                    "select m from Member m where m.name like '%kim%'",
+                    Member.class)
+                    .getResultList();
 
             tx.commit();
         } catch (Exception e) {
