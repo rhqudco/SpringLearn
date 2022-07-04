@@ -11,24 +11,41 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction(); // 트랜잭션
         tx.begin();
         try {
-            Team team = new Team();
-            team.setName("team");
-            em.persist(team);
+            Team team1 = new Team();
+            team1.setName("team1");
+            em.persist(team1);
 
-            Member member = new Member();
-            member.setUsername("test");
-            member.setAge(1);
-            member.setTeam(team);
-            em.persist(member);
+            Team team2 = new Team();
+            team2.setName("team2");
+            em.persist(team2);
+
+            Member member1 = new Member();
+            member1.setUsername("test1");
+            member1.setAge(1);
+            member1.setTeam(team1);
+            em.persist(member1);
+
+            Member member2 = new Member();
+            member2.setUsername("test2");
+            member2.setAge(1);
+            member2.setTeam(team1);
+            em.persist(member2);
+
+            Member member3 = new Member();
+            member3.setUsername("test3");
+            member3.setAge(1);
+            member3.setTeam(team2);
+            em.persist(member3);
 
             em.flush();
             em.clear();
 
-            String query = "select m from Member m inner join m.team t"; // inner는 생략 가능.
-//            String query = "select m from Member m left outer join m.team t"; // outer는 생략 가능.
-//            String query = "Select m.username From Team t Join t.members m";
+            String query = "select m from Member m join fetch m.team";
             List<Member> result = em.createQuery(query, Member.class)
                     .getResultList();
+            for (Member member : result) {
+                System.out.println("username = " + member.getUsername() + ", " + "teamName = " + member.getTeam().getName());
+            }
 
             tx.commit();
         } catch (Exception e) {
