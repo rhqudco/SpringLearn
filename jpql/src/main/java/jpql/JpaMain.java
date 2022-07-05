@@ -47,6 +47,18 @@ public class JpaMain {
                 System.out.println("team = " + team.getName() + " ㅣ members = " + team.getMembers().size());
             }
 
+            String query2 = "select m from Member m where m =:member";
+            Member findMember = em.createQuery(query2, Member.class)
+                    .setParameter("member", member1)
+                    .getSingleResult();
+            System.out.println("findMember = " + findMember);
+
+            String query3 = "select m from Member m where m.team =:team";
+            Member findMember2 = em.createQuery(query3, Member.class)
+                    .setParameter("team", team2)
+                    .getSingleResult();
+            System.out.println("findMember2 = " + findMember2);
+
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
