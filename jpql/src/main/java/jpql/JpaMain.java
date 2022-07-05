@@ -59,6 +59,24 @@ public class JpaMain {
                     .getSingleResult();
             System.out.println("findMember2 = " + findMember2);
 
+            List<Member> resultList = em.createNamedQuery("Member.findByUsername", Member.class)
+                    .setParameter("username", "test1")
+                    .getResultList();
+            for (Member member : resultList) {
+                System.out.println("member = " + member);
+            }
+
+            int resultCount = em.createQuery("update Member m set m.age = 20").executeUpdate();
+
+            em.clear();
+
+            Member findMember3 = em.find(Member.class, member1.getAge());
+            System.out.println("findMember3.getAge() = " + findMember3.getAge());
+
+//            System.out.println("member1.getAge() = " + member1.getAge());
+//            System.out.println("member2.getAge() = " + member2.getAge());
+//            System.out.println("member3.getAge() = " + member3.getAge());
+
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
